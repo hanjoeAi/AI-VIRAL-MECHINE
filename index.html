@@ -1,74 +1,57 @@
 <!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>AI Viral Machine Prompt Generator PRO (Fixed v2)</title>
+  <title>AI Viral Machine Prompt Generator PRO (Stable)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    textarea { font-family: ui-monospace, monospace; }
-    .card { background:#111827; border:1px solid #1f2937; border-radius:1rem; }
-    .btn { border-radius:0.75rem; padding:0.6rem 0.9rem; }
-  </style>
 </head>
-<body class="bg-gray-900 text-white p-4"><div class="max-w-5xl mx-auto space-y-6"><h1 class="text-2xl font-bold">🔥 Viral Machine Prompt Generator PRO</h1><div class="card p-4 space-y-3">
-  <input id="character" placeholder="Character" class="w-full p-2 rounded text-black" />
-  <input id="outfit" placeholder="Outfit" class="w-full p-2 rounded text-black" />
-  <input id="inputObj" placeholder="Input Object" class="w-full p-2 rounded text-black" />
-  <input id="outputObj" placeholder="Output Object" class="w-full p-2 rounded text-black" />
-  <input id="location" placeholder="Location" class="w-full p-2 rounded text-black" /><button id="randomBtn" class="btn bg-purple-600">🎲 Random Viral Idea</button> <button id="generateBtn" class="btn bg-blue-600">⚡ Generate Prompt</button>
+<body class="bg-gray-900 text-white p-4"><div class="max-w-3xl mx-auto space-y-4"><h1 class="text-2xl font-bold">🔥 Viral Machine Generator</h1><div class="bg-gray-800 p-4 rounded space-y-2">
+  <input id="character" placeholder="Character" class="w-full p-2 text-black rounded">
+  <input id="outfit" placeholder="Outfit" class="w-full p-2 text-black rounded">
+  <input id="inputObj" placeholder="Input Object" class="w-full p-2 text-black rounded">
+  <input id="outputObj" placeholder="Output Object" class="w-full p-2 text-black rounded">
+  <input id="location" placeholder="Location" class="w-full p-2 text-black rounded"><button type="button" id="randomBtn" class="bg-purple-600 px-3 py-2 rounded">🎲 Random</button> <button type="button" id="generateBtn" class="bg-blue-600 px-3 py-2 rounded">⚡ Generate</button>
 
-</div><div id="results" class="space-y-5"></div></div><script>
-document.addEventListener("DOMContentLoaded", function() {
+</div><div id="results"></div></div><script>
 
 function R(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
 
-const randomBtn = document.getElementById('randomBtn');
-const generateBtn = document.getElementById('generateBtn');
+// RANDOM BUTTON
 
-randomBtn.addEventListener('click', function(){
-  document.getElementById('character').value = R(['pria muda asia','wanita muda indonesia','teknisi muda']);
-  document.getElementById('outfit').value = R(['kaos putih, celana pendek','hoodie hitam, jeans']);
-  document.getElementById('inputObj').value = R(['telur','daun kelapa','jagung']);
-  document.getElementById('outputObj').value = R(['anak ayam warna-warni','bakul anyaman','popcorn kemasan']);
-  document.getElementById('location').value = R(['pabrik futuristik','gudang industrial']);
-});
+document.getElementById('randomBtn').onclick = function(){
+  document.getElementById('character').value = R(['pria muda asia','wanita muda indonesia']);
+  document.getElementById('outfit').value = R(['kaos santai','hoodie hitam']);
+  document.getElementById('inputObj').value = R(['telur','daun','jagung']);
+  document.getElementById('outputObj').value = R(['anak ayam','bakul','popcorn']);
+  document.getElementById('location').value = R(['pabrik','gudang']);
+};
 
-function createBlock(title, text){
-  return `
-  <div class="card p-3">
-    <div class="flex justify-between mb-2">
-      <b>${title}</b>
-      <button onclick="copyText(this)" class="btn bg-green-600">Copy</button>
-    </div>
-    <textarea class="w-full h-32 p-2 text-black">${text}</textarea>  </div>`;
-}function scene(title, img, vid){ return `
+// GENERATE BUTTON
 
-  <div>
-    <h2 class="font-bold text-lg mb-2">${title}</h2>
-    ${createBlock('PROMPT IMAGE', img)}
-    ${createBlock('PROMPT VIDEO', vid)}
-  </div>`;
-}generateBtn.addEventListener('click', function(){ const c = document.getElementById('character').value; const o = document.getElementById('outfit').value; const i = document.getElementById('inputObj').value; const out = document.getElementById('outputObj').value; const loc = document.getElementById('location').value;
+document.getElementById('generateBtn').onclick = function(){
 
-if(!c || !i || !out){ alert('Isi minimal Character, Input, dan Output'); return; }
+  let c = document.getElementById('character').value;
+  let o = document.getElementById('outfit').value;
+  let i = document.getElementById('inputObj').value;
+  let out = document.getElementById('outputObj').value;
+  let loc = document.getElementById('location').value;
 
-const base = "cinematic, ultra realistic, high detail, 8k";
+  if(!c || !i || !out){
+    alert('Isi Character, Input, Output');
+    return;
+  }
 
-const s1i = ${c}, memakai ${o}, berdiri di dekat mesin misterius di ${loc}, ${base}; const s1v = animate: ${s1i}, slow camera push in, slight movement;
+  let result = `
 
-const s2i = close-up tangan memasukkan ${i} ke mesin, ${base}; const s2v = animate: ${s2i}, motion tangan natural;
+SCENE 1 IMAGE:\n${c} memakai ${o} di ${loc}, cinematic\n\nSCENE 1 VIDEO:\nanimate dari gambar di atas, camera push in\n\n
+SCENE 2 IMAGE:\nclose up memasukkan ${i} ke mesin\n\nSCENE 2 VIDEO:\nanimate tangan bergerak\n\n
+SCENE 3 IMAGE:\nmesin mengubah ${i} jadi ${out}\n\nSCENE 3 VIDEO:\nanimate gear bergerak\n\n
+SCENE 4 IMAGE:\n${out} keluar dari mesin\n\nSCENE 4 VIDEO:\nanimate slow motion keluar\n\n
+SCENE 5 IMAGE:\n${c} kagum melihat mesin\n\nSCENE 5 VIDEO:\nanimate camera pull back
 
-const s3i = dalam mesin, proses mengubah ${i} menjadi ${out}, mekanik bergerak, ${base}; const s3v = animate: ${s3i}, gear berputar, efek cahaya;
+`;
 
-const s4i = ${out} keluar dari mesin, clean, satisfying, ${base}; const s4v = animate: ${s4i}, slow motion keluar;
+  document.getElementById('results').innerHTML = '<textarea style="width:100%;height:400px;color:black">'+result+'</textarea>';};
 
-const s5i = ${c} terlihat kagum melihat mesin, ${base}; const s5v = animate: ${s5i}, kamera mundur perlahan untuk loop;
-
-document.getElementById('results').innerHTML = scene('Scene 1 - Hook', s1i, s1v) + scene('Scene 2 - Input', s2i, s2v) + scene('Scene 3 - Process', s3i, s3v) + scene('Scene 4 - Output', s4i, s4v) + scene('Scene 5 - Loop', s5i, s5v); });
-
-window.copyText = function(btn){ const textarea = btn.parentElement.nextElementSibling; textarea.select(); document.execCommand('copy'); btn.innerText = 'Copied'; }
-
-}); </script>
-
-</body>
+</script></body>
 </html>
