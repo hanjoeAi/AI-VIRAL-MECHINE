@@ -1,72 +1,68 @@
 <!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>AI Viral Machine Prompt Generator PRO (Blocks + Copy)</title>
+  <title>AI Viral Machine Generator PRO (Final Stable)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    textarea{font-family:ui-monospace,monospace}
-    .card{background:#111827;border:1px solid #1f2937;border-radius:14px}
-    .btn{padding:6px 10px;border-radius:10px}
-  </style>
 </head>
-<body class="bg-gray-900 text-white p-4"><div class="max-w-4xl mx-auto space-y-5"><h1 class="text-2xl font-bold">🔥 Viral Machine Generator PRO</h1><div class="card p-4 space-y-2">
+<body class="bg-gray-900 text-white p-4"><div class="max-w-4xl mx-auto space-y-5"><h1 class="text-2xl font-bold">🔥 Viral Machine Generator PRO</h1><div class="bg-gray-800 p-4 rounded space-y-2">
   <input id="character" placeholder="Character" class="w-full p-2 text-black rounded">
   <input id="outfit" placeholder="Outfit" class="w-full p-2 text-black rounded">
   <input id="inputObj" placeholder="Input Object" class="w-full p-2 text-black rounded">
   <input id="outputObj" placeholder="Output Object" class="w-full p-2 text-black rounded">
   <input id="location" placeholder="Location" class="w-full p-2 text-black rounded">  <div class="flex gap-2">
-    <button onclick="randomData()" class="bg-purple-600 btn">🎲 Random</button>
-    <button onclick="generate()" class="bg-blue-600 btn">⚡ Generate</button>
-    <button onclick="copyAll()" class="bg-green-600 btn">📋 Copy All</button>
+    <button onclick="randomData()" class="bg-purple-600 px-3 py-2 rounded">🎲 Random</button>
+    <button onclick="generate()" class="bg-blue-600 px-3 py-2 rounded">⚡ Generate</button>
+    <button onclick="copyAll()" class="bg-green-600 px-3 py-2 rounded">📋 Copy All</button>
   </div>
 </div><div id="results" class="space-y-4"></div></div><script>
+
 function R(a){return a[Math.floor(Math.random()*a.length)]}
 
 function randomData(){
-  character.value=R(['pria muda asia','wanita muda indonesia'])
-  outfit.value=R(['kaos santai','hoodie hitam'])
-  inputObj.value=R(['telur','daun kelapa','jagung'])
-  outputObj.value=R(['anak ayam warna-warni','bakul anyaman','popcorn'])
-  location.value=R(['pabrik futuristik','gudang industrial'])
+  document.getElementById('character').value = R(['pria muda asia','wanita muda indonesia'])
+  document.getElementById('outfit').value = R(['kaos santai','hoodie hitam'])
+  document.getElementById('inputObj').value = R(['telur','daun kelapa','jagung'])
+  document.getElementById('outputObj').value = R(['anak ayam warna-warni','bakul anyaman','popcorn'])
+  document.getElementById('location').value = R(['pabrik futuristik','gudang industrial'])
 }
 
 function block(title,text){
   return `
-  <div class="card p-3">
+  <div class="bg-gray-800 p-3 rounded">
     <div class="flex justify-between mb-2">
       <b>${title}</b>
-      <button onclick="copyThis(this)" class="bg-green-600 btn">Copy</button>
+      <button onclick="copyThis(this)" class="bg-green-600 px-2 py-1 rounded">Copy</button>
     </div>
-    <textarea class="w-full h-36 p-2 text-black">${text}</textarea>  </div>`
+    <textarea class="w-full h-32 p-2 text-black">${text}</textarea>  </div>`
 }function scene(title,img,vid){ return `
 
   <div>
     <h2 class="font-bold text-lg mb-2">${title}</h2>
     ${block('PROMPT IMAGE',img)}
-    ${block('PROMPT VIDEO (CINEMATIC)',vid)}
+    ${block('PROMPT VIDEO',vid)}
   </div>`
-}function generate(){ let c=character.value let o=outfit.value let i=inputObj.value let out=outputObj.value let loc=location.value
+}function generate(){ let c=document.getElementById('character').value let o=document.getElementById('outfit').value let i=document.getElementById('inputObj').value let out=document.getElementById('outputObj').value let loc=document.getElementById('location').value
 
 if(!c||!i||!out){alert('Isi Character, Input, Output');return}
 
-let base="ultra realistic, cinematic lighting, 8k, high detail, depth of field"
+let base="ultra realistic, cinematic lighting, 8k, high detail"
 
-let s1i=${c}, memakai ${o}, berdiri di dekat mesin misterius di ${loc}, ekspresi penasaran, ${base} let s1v=Animate from image: ${s1i}. Camera: slow push-in (dolly in), slight handheld shake, subtle breathing motion, light flicker from machine, cinematic depth, 24fps film look.
+let s1i=${c}, memakai ${o}, berdiri di dekat mesin di ${loc}, ${base} let s1v=Animate from image: ${s1i}. Camera: slow push-in, slight handheld, subtle motion.
 
-let s2i=close-up tangan memasukkan ${i} ke mesin, detail tekstur jelas, ${base} let s2v=Animate from image: ${s2i}. Camera: macro lens, focus pull dari tangan ke mesin, gerakan tangan natural, slight slow motion, particle kecil beterbangan.
+let s2i=close-up memasukkan ${i} ke mesin, ${base} let s2v=Animate from image: ${s2i}. Camera: macro, focus pull, natural hand motion.
 
-let s3i=bagian dalam mesin, proses mengubah ${i} menjadi ${out}, gear dan mekanik bergerak, ${base} let s3v=Animate from image: ${s3i}. Camera: tracking shot mengikuti alur mesin, gear berputar, cahaya neon berkedip, motion blur, dynamic movement.
+let s3i=mesin mengubah ${i} menjadi ${out}, ${base} let s3v=Animate from image: ${s3i}. Camera: tracking, gear bergerak, motion blur.
 
-let s4i=${out} keluar dari mesin, clean, estetik, satisfying, ${base} let s4v=Animate from image: ${s4i}. Camera: slow motion, slight zoom-in, output keluar halus, efek partikel halus, highlight detail.
+let s4i=${out} keluar dari mesin, ${base} let s4v=Animate from image: ${s4i}. Camera: slow motion, zoom in.
 
-let s5i=${c} terlihat kagum melihat mesin, framing mirip awal, ${base} let s5v=Animate from image: ${s5i}. Camera: slow pull-back (dolly out), ekspresi berubah kagum, seamless loop ke scene awal.
+let s5i=${c} kagum melihat mesin, ${base} let s5v=Animate from image: ${s5i}. Camera: pull back, loop.
 
-results.innerHTML = scene('Scene 1 - Hook',s1i,s1v)+ scene('Scene 2 - Input',s2i,s2v)+ scene('Scene 3 - Process',s3i,s3v)+ scene('Scene 4 - Output',s4i,s4v)+ scene('Scene 5 - Loop',s5i,s5v) }
+document.getElementById('results').innerHTML = scene('Scene 1 - Hook',s1i,s1v)+ scene('Scene 2 - Input',s2i,s2v)+ scene('Scene 3 - Process',s3i,s3v)+ scene('Scene 4 - Output',s4i,s4v)+ scene('Scene 5 - Loop',s5i,s5v) }
 
 function copyThis(btn){ let ta=btn.parentElement.nextElementSibling ta.select() document.execCommand('copy') btn.innerText='Copied' setTimeout(()=>btn.innerText='Copy',1000) }
 
-function copyAll(){ let all=[...document.querySelectorAll('textarea')].map(t=>t.value).join('\n\n') let temp=document.createElement('textarea') temp.value=all document.body.appendChild(temp) temp.select() document.execCommand('copy') document.body.removeChild(temp) alert('All copied') } </script>
+function copyAll(){ let all=[...document.querySelectorAll('#results textarea')].map(t=>t.value).join('\n\n') let temp=document.createElement('textarea') temp.value=all document.body.appendChild(temp) temp.select() document.execCommand('copy') document.body.removeChild(temp) alert('All copied') }
 
-</body>
+</script></body>
 </html>
