@@ -1,0 +1,45 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Viral Machine Prompt Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white p-6">  <div class="max-w-3xl mx-auto">
+    <h1 class="text-3xl font-bold mb-4">🔥 Viral Machine Prompt Generator</h1><div class="space-y-4">
+  <input id="character" placeholder="Character (e.g. pria muda asia)" class="w-full p-2 rounded text-black" />
+  <input id="outfit" placeholder="Outfit" class="w-full p-2 rounded text-black" />
+  <input id="inputObj" placeholder="Input Object (e.g. telur, daun, jagung)" class="w-full p-2 rounded text-black" />
+  <input id="outputObj" placeholder="Output Object (e.g. anak ayam warna-warni)" class="w-full p-2 rounded text-black" />
+  <input id="location" placeholder="Location (e.g. pabrik futuristik)" class="w-full p-2 rounded text-black" />
+
+  <button onclick="generatePrompt()" class="bg-blue-600 px-4 py-2 rounded">Generate Prompt</button>
+</div>
+
+<div class="mt-6">
+  <h2 class="text-xl font-semibold mb-2">Result:</h2>
+  <textarea id="output" class="w-full h-96 p-3 text-black rounded"></textarea>
+</div>
+
+  </div><script>
+function generatePrompt() {
+  let character = document.getElementById('character').value;
+  let outfit = document.getElementById('outfit').value;
+  let inputObj = document.getElementById('inputObj').value;
+  let outputObj = document.getElementById('outputObj').value;
+  let location = document.getElementById('location').value;
+
+  let prompt = `SCENE 1 (HOOK):\n${character}, wearing ${outfit}, standing beside a mysterious large machine in ${location}, cinematic lighting, ultra realistic\n\n` +
+
+  `SCENE 2 (INPUT):\nclose-up hands inserting ${inputObj} into the machine, macro shot, high detail, cinematic\n\n` +
+
+  `SCENE 3 (PROCESS):\ninside machine, gears moving, glowing lights, transforming ${inputObj} into ${outputObj}, futuristic cinematic\n\n` +
+
+  `SCENE 4 (OUTPUT):\n${outputObj} coming out of machine, satisfying, slow motion, high detail, clean lighting\n\n` +
+
+  `SCENE 5 (LOOP):\n${character} looking amazed, same framing as opening, seamless loop`;
+
+  document.getElementById('output').value = prompt;
+}
+</script></body>
+</html>
